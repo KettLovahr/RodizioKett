@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		get_tree().create_tween().tween_property($RayCast2D/Beam, "modulate", Color(0, 0, 0, 0), 0.2)
 		var collider = $RayCast2D.get_collider()
 		self.can_shoot = false
-		$CanShootTimer.start()
+		$CanShootTimer.start(%Spawner.spawn_delay * 1.2)
 		if collider is Block:
 			if collider.color == Block.BlockColor.EVIL:
 				collider.health -= 1

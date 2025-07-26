@@ -141,6 +141,7 @@ difficulties = Array[ExtResource("2_maf8m")]([SubResource("Resource_huasi"), Sub
 [node name="SeeSaw" parent="." instance=ExtResource("1_52fb6")]
 
 [node name="Spawner" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -512)
 script = ExtResource("2_6l7je")
 
