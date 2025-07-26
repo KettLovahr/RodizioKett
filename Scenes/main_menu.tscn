@@ -27,7 +27,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "Controles:
 [color=yellow]Setas ou A-D[/color] - Virar a gangorra
-[color=yellow]Barra de espaço[/color] - Atirar nos [color=red]blocos do mal[/color]"
+[color=yellow]Barra de espaço[/color] - Atirar nos [color=red]blocos do mau[/color]"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
