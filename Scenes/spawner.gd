@@ -16,7 +16,8 @@ var evil_health: int = 1
 
 var spawn_delay: float = 2:
 	set(v):
-		timer.start(spawn_delay)
+		if timer != null:
+			timer.start(spawn_delay)
 		spawn_delay = v
 
 func _ready() -> void:
