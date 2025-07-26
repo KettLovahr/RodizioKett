@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1jp78oc1nkgs"]
+
+[ext_resource type="Texture2D" uid="uid://dviw7ke7xm822" path="res://icon.svg" id="1_crjby"]
+[ext_resource type="Script" uid="uid://cnasyp0i08l00" path="res://Scenes/see_saw.gd" id="2_qdlng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crjby"]
+size = Vector2(54, 64)
+
+[node name="SeeSaw" type="Sprite2D"]
+scale = Vector2(4, 0.5)
+texture = ExtResource("1_crjby")
+script = ExtResource("2_qdlng")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -128)
+
+[node name="SeeSawArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeeSawArea"]
+shape = SubResource("RectangleShape2D_crjby")
+
+[connection signal="area_entered" from="SeeSawArea" to="." method="_on_see_saw_area_entered"]
