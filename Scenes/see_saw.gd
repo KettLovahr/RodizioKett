@@ -21,12 +21,9 @@ func _process(delta: float) -> void:
 		$RayCast2D/Beam.modulate = Color.WHITE
 		get_tree().create_tween().tween_property($RayCast2D/Beam, "scale", Vector2(0, 15), 0.2)
 		get_tree().create_tween().tween_property($RayCast2D/Beam, "modulate", Color(0, 0, 0, 0), 0.2)
-		print("fuck")
 		var collider = $RayCast2D.get_collider()
 		if collider is Block:
-			print("there is a block")
 			if collider.color == Block.BlockColor.EVIL:
-				print("and it is evil")
 				collider.health -= 1
 
 

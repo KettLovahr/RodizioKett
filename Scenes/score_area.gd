@@ -9,7 +9,7 @@ func _ready():
 
 func _on_area_entered(area:Area2D):
 	if area is Block:
-		if area.color == preferred_color:
+		if area.color == preferred_color and area.color != Block.BlockColor.EVIL:
 			scene_manager.score += 1
 			area.queue_free()
 			match preferred_color:
