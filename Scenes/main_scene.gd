@@ -25,7 +25,7 @@ var score: int = 0:
 	set(v):
 		score = v
 		score_label.text = "%s" % [v]
-		if v % 10 == 0:
+		if v % 10 == 0 and not dead:
 			self.lives += 1
 		for diff in difficulties:
 			var spawner: Spawner = $Spawner
