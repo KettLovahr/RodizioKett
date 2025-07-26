@@ -5,6 +5,9 @@ class_name MainScene
 @export var lives_label: Label
 @export var difficulties: Array[DifficultyRule]
 
+var dead: bool = false
+signal died
+
 var lives: int = 3:
 	set(v):
 		var spawner: Spawner = $Spawner
@@ -13,8 +16,10 @@ var lives: int = 3:
 		lives_label.text = "Vidas: %s" % [lives]
 		spawner.evil_chance = lives * 0.02
 		if lives == 0:
-			spawner.timer.stop()
-
+			if not dead:
+				print("You're dead.")
+				died.emit()
+				dead = true
 
 var score: int = 0:
 	set(v):
@@ -29,3 +34,12 @@ var score: int = 0:
 				spawner.spawn_delay = diff.spawn_timer
 				print("speed up!")
 				break
+
+
+func _on_spawner_game_over() -> void:
+	$UILayer/UIRoot/GameOverOverlay/GameOverScoreLabel.text = "Pontos: %d" % [score]
+	$UILayer/UIRoot/GameOverOverlay.show()
+
+
+func _on_try_again_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_scene.tscn")
