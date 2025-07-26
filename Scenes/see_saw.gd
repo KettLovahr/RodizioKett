@@ -7,6 +7,7 @@ var right_rot = PI/6
 
 var target_rotation: float = right_rot
 
+var switch_speed: float = 0.1
 
 
 var can_shoot: bool = true:
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 		target_rotation = right_rot
 	if axis < 0:
 		target_rotation = left_rot
-	rotation = lerp(rotation, target_rotation, 0.1)
+	rotation = lerp(rotation, target_rotation, switch_speed)
 	
 	if Input.is_action_just_pressed("move_shoot") and can_shoot:
 		$RayCast2D/Beam.scale = Vector2(1.0, 15)
