@@ -28,7 +28,6 @@ var score: int = 0:
 		if v % 10 == 0 and not dead:
 			self.lives += 1
 		$SeeSaw.switch_speed = 0.1 + min(0.6, score / 500.0)
-		print($SeeSaw.switch_speed)
 		for diff in difficulties:
 			var spawner: Spawner = $Spawner
 			if diff.score_requirement == v:
