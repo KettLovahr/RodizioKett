@@ -32,7 +32,7 @@ var score: int = 0:
 			if diff.score_requirement == v:
 				spawner.spawned_block_fall_speed = diff.fall_speed
 				spawner.spawn_delay = diff.spawn_timer
-				print("speed up!")
+				print("speed up! %s %s" % [diff.fall_speed, diff.spawn_timer])
 				break
 
 
