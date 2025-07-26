@@ -1,22 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1jp78oc1nkgs"]
+[gd_scene load_steps=6 format=3 uid="uid://d1jp78oc1nkgs"]
 
 [ext_resource type="Texture2D" uid="uid://dviw7ke7xm822" path="res://icon.svg" id="1_crjby"]
 [ext_resource type="Script" uid="uid://cnasyp0i08l00" path="res://Scenes/see_saw.gd" id="2_qdlng"]
+[ext_resource type="Shader" uid="uid://clgtnwun0iv48" path="res://Scenes/receptacle_area.gdshader" id="3_qdlng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88dms"]
+shader = ExtResource("3_qdlng")
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crjby"]
-size = Vector2(54, 64)
+size = Vector2(146, 34)
 
-[node name="SeeSaw" type="Sprite2D"]
-scale = Vector2(4, 0.5)
-texture = ExtResource("1_crjby")
+[node name="SeeSawArea" type="Area2D"]
 script = ExtResource("2_qdlng")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+top_level = true
+position = Vector2(0, -28)
+target_position = Vector2(0, -1000)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Beam" type="Sprite2D" parent="RayCast2D"]
+material = SubResource("ShaderMaterial_88dms")
+position = Vector2(0, -403.5)
+scale = Vector2(1e-05, 15)
+texture = ExtResource("1_crjby")
+
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(4, 0.5)
 offset = Vector2(0, -128)
 
-[node name="SeeSawArea" type="Area2D" parent="."]
+[node name="SeeSaw" type="Sprite2D" parent="."]
+scale = Vector2(4, 0.5)
+texture = ExtResource("1_crjby")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SeeSawArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_crjby")
 
-[connection signal="area_entered" from="SeeSawArea" to="." method="_on_see_saw_area_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

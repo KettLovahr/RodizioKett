@@ -150,7 +150,7 @@ scene_manager = NodePath("..")
 
 [node name="Icon" type="Sprite2D" parent="PinkArea"]
 material = SubResource("ShaderMaterial_maf8m")
-position = Vector2(-768, 128)
+position = Vector2(-832, 128)
 scale = Vector2(18, 4)
 texture = ExtResource("5_6ev3c")
 
@@ -166,7 +166,7 @@ scene_manager = NodePath("..")
 
 [node name="Icon" type="Sprite2D" parent="GreenArea"]
 material = SubResource("ShaderMaterial_huasi")
-position = Vector2(768, 128)
+position = Vector2(832, 128)
 scale = Vector2(18, 4)
 texture = ExtResource("5_6ev3c")
 
