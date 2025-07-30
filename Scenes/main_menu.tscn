@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsjm3ba23hdif"]
+[gd_scene load_steps=6 format=3 uid="uid://bsjm3ba23hdif"]
 
 [ext_resource type="Script" uid="uid://c7w00a0w33k5j" path="res://Scenes/main_menu.gd" id="1_28flt"]
 [ext_resource type="Shader" uid="uid://hxv5wls3kwk4" path="res://Scenes/ScrollBG.gdshader" id="2_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://bni7rnol24t8j" path="res://Sprites/background.png" id="2_48xlc"]
+[ext_resource type="Texture2D" uid="uid://bkehakbdbtoof" path="res://Sprites/GameLogo.png" id="4_ce3w2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ce3w2"]
 shader = ExtResource("2_1ehe0")
-shader_parameter/Speed = 0.1
+shader_parameter/Speed = 0.05
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -17,25 +18,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
 
-[node name="ControlInstructions" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -116.0
-offset_right = 184.0
-offset_bottom = -28.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "Controles:
-[color=yellow]Setas ou A-D[/color] - Virar a gangorra
-[color=yellow]Barra de espaço[/color] - Atirar nos [color=red]blocos do mau[/color]"
-horizontal_alignment = 1
-
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -43,10 +25,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.5
-offset_top = -15.5
-offset_right = 38.5
-offset_bottom = 15.5
+offset_left = -724.0
+offset_top = -86.0
+offset_right = -647.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Começar"
@@ -61,5 +43,31 @@ scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("2_48xlc")
 stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="GameLogo" type="Sprite2D" parent="."]
+position = Vector2(578, 797)
+scale = Vector2(3, 3)
+texture = ExtResource("4_ce3w2")
+
+[node name="ControlInstructions" type="RichTextLabel" parent="GameLogo"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.5
+offset_top = 5.16667
+offset_right = 171.5
+offset_bottom = 109.167
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "Controles:
+[color=yellow]Setas ou A-D[/color] - Virar a gangorra
+[color=yellow]Barra de espaço[/color] - Atirar nos [color=red]blocos do mau[/color]
+[color=yellow]APERTE ESPAÇO PARA COMEÇAR![/color]"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
