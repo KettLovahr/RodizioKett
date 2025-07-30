@@ -1,16 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwj372hqbaoeu"]
+[gd_scene load_steps=10 format=3 uid="uid://cwj372hqbaoeu"]
 
 [ext_resource type="Script" uid="uid://cklx0glislr6x" path="res://Scenes/block.gd" id="1_x55lh"]
 [ext_resource type="Texture2D" uid="uid://dviw7ke7xm822" path="res://icon.svg" id="2_ujcp4"]
+[ext_resource type="SpriteFrames" uid="uid://cjsm3b6lyru4w" path="res://Sprites/BoxSprites.tres" id="3_ujcp4"]
+[ext_resource type="Texture2D" uid="uid://d3sfxdrtotqi5" path="res://Sprites/BoxParticlesTile.png" id="4_kcwjl"]
+[ext_resource type="Material" uid="uid://cbiimp4iajyfy" path="res://Sprites/LandParticles.tres" id="5_6wmqn"]
+[ext_resource type="Texture2D" uid="uid://cw8ae3ljfiegj" path="res://Sprites/GreenBoxParticlesTile.png" id="6_6wmqn"]
+[ext_resource type="Material" uid="uid://c2hh1bxa8tmdv" path="res://Sprites/KillParticles.tres" id="7_rnlux"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjsgv"]
 size = Vector2(64, 64)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rnlux"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [node name="Block" type="Area2D"]
 script = ExtResource("1_x55lh")
 
 [node name="BlockSprite" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_ujcp4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rjsgv")
+
+[node name="BoxSprites" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_ujcp4")
+animation = &"Default"
+frame_progress = 0.134745
+
+[node name="LandParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_rnlux")
+position = Vector2(0, 48)
+emitting = false
+amount = 6
+texture = ExtResource("4_kcwjl")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = ExtResource("5_6wmqn")
+
+[node name="LandParticlesGreen" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_rnlux")
+position = Vector2(0, 48)
+emitting = false
+amount = 6
+texture = ExtResource("6_6wmqn")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = ExtResource("5_6wmqn")
+
+[node name="KillParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_rnlux")
+emitting = false
+amount = 16
+texture = ExtResource("4_kcwjl")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = ExtResource("7_rnlux")

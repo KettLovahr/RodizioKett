@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsjm3ba23hdif"]
+[gd_scene load_steps=5 format=3 uid="uid://bsjm3ba23hdif"]
 
 [ext_resource type="Script" uid="uid://c7w00a0w33k5j" path="res://Scenes/main_menu.gd" id="1_28flt"]
+[ext_resource type="Shader" uid="uid://hxv5wls3kwk4" path="res://Scenes/ScrollBG.gdshader" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://bni7rnol24t8j" path="res://Sprites/background.png" id="2_48xlc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ce3w2"]
+shader = ExtResource("2_1ehe0")
+shader_parameter/Speed = 0.1
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -44,5 +50,16 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Começar"
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -20
+material = SubResource("ShaderMaterial_ce3w2")
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 1024.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+texture = ExtResource("2_48xlc")
+stretch_mode = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

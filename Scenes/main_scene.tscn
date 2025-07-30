@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c0llhjtw2hpub"]
+[gd_scene load_steps=31 format=3 uid="uid://c0llhjtw2hpub"]
 
 [ext_resource type="Script" uid="uid://cfxwoa5ciesqk" path="res://Scenes/main_scene.gd" id="1_6ev3c"]
 [ext_resource type="PackedScene" uid="uid://d1jp78oc1nkgs" path="res://Scenes/see_saw.tscn" id="1_52fb6"]
@@ -8,6 +8,8 @@
 [ext_resource type="Shader" uid="uid://clgtnwun0iv48" path="res://Scenes/receptacle_area.gdshader" id="4_iacmt"]
 [ext_resource type="Texture2D" uid="uid://dviw7ke7xm822" path="res://icon.svg" id="5_6ev3c"]
 [ext_resource type="Script" uid="uid://bm4kg1i6o14pu" path="res://Scenes/indicator.gd" id="8_huasi"]
+[ext_resource type="Shader" uid="uid://hxv5wls3kwk4" path="res://Scenes/ScrollBG.gdshader" id="8_mai8y"]
+[ext_resource type="Texture2D" uid="uid://bni7rnol24t8j" path="res://Sprites/background.png" id="9_76v2p"]
 
 [sub_resource type="Resource" id="Resource_huasi"]
 script = ExtResource("2_maf8m")
@@ -132,6 +134,10 @@ size = Vector2(1152, 66)
 shader = ExtResource("4_iacmt")
 shader_parameter/color = Color(0.508738, 0.888349, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drdnd"]
+shader = ExtResource("8_mai8y")
+shader_parameter/Speed = 0.05
+
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("score_label", "lives_label")]
 script = ExtResource("1_6ev3c")
 score_label = NodePath("UILayer/UIRoot/ScoreLabel")
@@ -186,7 +192,32 @@ position = Vector2(0, 352)
 shape = SubResource("RectangleShape2D_jv6wh")
 debug_color = Color(0.956863, 0, 0, 0.419608)
 
+[node name="Background" type="TextureRect" parent="."]
+z_index = -300
+z_as_relative = false
+material = SubResource("ShaderMaterial_drdnd")
+offset_left = -910.0
+offset_top = -640.0
+offset_right = 114.0
+offset_bottom = 384.0
+scale = Vector2(2, 2)
+texture = ExtResource("9_76v2p")
+stretch_mode = 1
+
 [node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="BGLayer" type="CanvasLayer" parent="UILayer"]
+
+[node name="Indicator" type="ColorRect" parent="UILayer/BGLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_huasi")
 
 [node name="UIRoot" type="Control" parent="UILayer"]
 layout_mode = 3
@@ -277,20 +308,6 @@ offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Tentar novamente"
-
-[node name="BGLayer" type="CanvasLayer" parent="."]
-layer = -10
-
-[node name="Indicator" type="ColorRect" parent="BGLayer"]
-unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -608.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("8_huasi")
 
 [connection signal="died" from="." to="Spawner" method="_on_main_scene_died"]
 [connection signal="game_over" from="Spawner" to="." method="_on_spawner_game_over"]

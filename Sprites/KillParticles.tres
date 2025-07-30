@@ -1,0 +1,22 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://c2hh1bxa8tmdv"]
+
+[sub_resource type="Curve" id="Curve_hcg21"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.294118, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8at5f"]
+curve = SubResource("Curve_hcg21")
+
+[resource]
+particle_flag_disable_z = true
+angle_min = 180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -281.38
+angular_velocity_max = 223.45
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_8at5f")
+anim_offset_max = 1.0
