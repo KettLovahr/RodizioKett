@@ -56,13 +56,14 @@ position = Vector2(0, -11)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("4_88dms")
 animation = &"shoot"
-frame = 6
+frame = 5
 frame_progress = 1.0
 
 [node name="CanShootTimer" type="Timer" parent="."]
 wait_time = 2.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="SeeSawSprites" to="." method="_on_see_saw_sprites_animation_finished"]
 [connection signal="animation_finished" from="CanShootIndicator/Robot" to="." method="_on_robot_animation_finished"]
 [connection signal="frame_changed" from="CanShootIndicator/Robot" to="." method="_on_robot_frame_changed"]
 [connection signal="timeout" from="CanShootTimer" to="." method="_on_can_shoot_timer_timeout"]

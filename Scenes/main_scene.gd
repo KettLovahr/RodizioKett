@@ -8,12 +8,14 @@ class_name MainScene
 var dead: bool = false
 signal died
 
+@onready var robot_ui: AnimatedSprite2D = $UILayer/RobotUI
+
 var lives: int = 3:
 	set(v):
 		var spawner: Spawner = $Spawner
 		lives = v if v <= 10 else 10
 		lives = lives if lives > 0 else 0
-		lives_label.text = "Vidas: %s" % [lives]
+		lives_label.text = str(lives)
 		spawner.evil_chance = lives * 0.02
 		if lives == 0:
 			if not dead:
@@ -36,11 +38,13 @@ var score: int = 0:
 				print("speed up! %s %s" % [diff.fall_speed, diff.spawn_timer])
 				break
 
+func _ready() -> void:
+	robot_ui.frame = 5
 
 func _on_spawner_game_over() -> void:
 	$UILayer/UIRoot/GameOverOverlay/GameOverScoreLabel.text = "Pontos: %d" % [score]
 	$UILayer/UIRoot/GameOverOverlay.show()
 
-
-func _on_try_again_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main_scene.tscn")
+func _process(delta: float) -> void:
+	if dead and Input.is_action_just_pressed("move_shoot"):
+		get_tree().change_scene_to_file("res://Scenes/main_scene.tscn")

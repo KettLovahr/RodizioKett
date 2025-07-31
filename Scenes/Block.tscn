@@ -30,8 +30,8 @@ shape = SubResource("RectangleShape2D_rjsgv")
 [node name="BoxSprites" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_ujcp4")
-animation = &"Default"
-frame_progress = 0.134745
+animation = &"EvilBox"
+frame_progress = 0.878797
 
 [node name="LandParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_rnlux")

@@ -13,6 +13,7 @@ config_version=5
 config/name="RodizioKett"
 run/main_scene="uid://bsjm3ba23hdif"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [display]

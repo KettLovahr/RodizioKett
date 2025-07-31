@@ -48,7 +48,6 @@ func _ready() -> void:
 			collision_layer = 2 | 1
 
 func _process(delta: float) -> void:
-	print(Squished)
 	velocity.y += fall_speed
 	position += velocity * delta
 	rotation += rot_speed * 2 * delta

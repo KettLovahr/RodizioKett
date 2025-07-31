@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://gvky0vjdooa0"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://gvky0vjdooa0"]
 
 [ext_resource type="Texture2D" uid="uid://c4xkya603yl3d" path="res://Sprites/Robot1.png" id="1_3e32s"]
 [ext_resource type="Texture2D" uid="uid://b7ghagjidg682" path="res://Sprites/Robot2.png" id="2_lpuvk"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://d4mdvmjsgu7xh" path="res://Sprites/Robot6.png" id="6_u58h5"]
 [ext_resource type="Texture2D" uid="uid://da6g0g6y6so86" path="res://Sprites/Robot7.png" id="7_8jfnm"]
 [ext_resource type="Texture2D" uid="uid://bfa76uqnnfwiw" path="res://Sprites/Robot8.png" id="8_iopxd"]
-[ext_resource type="Texture2D" uid="uid://ct425tw5fu3wc" path="res://Sprites/Robot9.png" id="9_5vbyj"]
 [ext_resource type="Texture2D" uid="uid://dtrw6ogwvli0a" path="res://Sprites/Robot10.png" id="10_pivg7"]
 [ext_resource type="Texture2D" uid="uid://dvrmlc10chcya" path="res://Sprites/Robot11.png" id="11_4psjk"]
 [ext_resource type="Texture2D" uid="uid://bwoh38fk4hnfq" path="res://Sprites/Robot12.png" id="12_uynqg"]
@@ -48,9 +47,6 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_5vbyj")
-}, {
 "duration": 1.0,
 "texture": ExtResource("10_pivg7")
 }, {

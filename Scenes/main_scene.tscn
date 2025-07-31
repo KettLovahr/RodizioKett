@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c0llhjtw2hpub"]
+[gd_scene load_steps=38 format=3 uid="uid://c0llhjtw2hpub"]
 
 [ext_resource type="Script" uid="uid://cfxwoa5ciesqk" path="res://Scenes/main_scene.gd" id="1_6ev3c"]
 [ext_resource type="PackedScene" uid="uid://d1jp78oc1nkgs" path="res://Scenes/see_saw.tscn" id="1_52fb6"]
@@ -9,7 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://dviw7ke7xm822" path="res://icon.svg" id="5_6ev3c"]
 [ext_resource type="Script" uid="uid://bm4kg1i6o14pu" path="res://Scenes/indicator.gd" id="8_huasi"]
 [ext_resource type="Shader" uid="uid://hxv5wls3kwk4" path="res://Scenes/ScrollBG.gdshader" id="8_mai8y"]
-[ext_resource type="Texture2D" uid="uid://bni7rnol24t8j" path="res://Sprites/background.png" id="9_76v2p"]
+[ext_resource type="Texture2D" uid="uid://dp843gjs58y10" path="res://Sprites/MainBG.png" id="9_7ewk0"]
+[ext_resource type="SpriteFrames" uid="uid://dhbxnpij8bbw0" path="res://Sprites/RobotUI.tres" id="10_gnsmo"]
+[ext_resource type="Texture2D" uid="uid://ds7sjrgkj0u8s" path="res://Sprites/BoxContainers3.png" id="11_7ewk0"]
+[ext_resource type="Texture2D" uid="uid://dae2o71xyhgmi" path="res://Sprites/BoxContainers1.png" id="11_76v2p"]
+[ext_resource type="Texture2D" uid="uid://bj31snwluwehq" path="res://Sprites/BoxContainers2.png" id="12_drdnd"]
+[ext_resource type="LabelSettings" uid="uid://d0jh4ordcmf4p" path="res://Scenes/MainTextUI.tres" id="12_gnsmo"]
+[ext_resource type="Texture2D" uid="uid://df25p8rhb3mjt" path="res://Sprites/BoxContainers4.png" id="12_lhp3t"]
+[ext_resource type="LabelSettings" uid="uid://caisc2nmol4lm" path="res://Scenes/ScoreText.tres" id="12_psl12"]
 
 [sub_resource type="Resource" id="Resource_huasi"]
 script = ExtResource("2_maf8m")
@@ -123,12 +130,12 @@ fall_speed = 20.0
 spawn_timer = 0.5
 metadata/_custom_type_script = "uid://clb234uy21687"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv6wh"]
+size = Vector2(1152, 66)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_maf8m"]
 shader = ExtResource("4_iacmt")
 shader_parameter/color = Color(1, 0.6, 1, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv6wh"]
-size = Vector2(1152, 66)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_huasi"]
 shader = ExtResource("4_iacmt")
@@ -136,7 +143,8 @@ shader_parameter/color = Color(0.508738, 0.888349, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drdnd"]
 shader = ExtResource("8_mai8y")
-shader_parameter/Speed = 0.05
+shader_parameter/SpeedX = 0.05
+shader_parameter/SpeedY = 0.0
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("score_label", "lives_label")]
 script = ExtResource("1_6ev3c")
@@ -155,32 +163,34 @@ script = ExtResource("2_6l7je")
 script = ExtResource("3_jv6wh")
 scene_manager = NodePath("..")
 
-[node name="Icon" type="Sprite2D" parent="PinkArea"]
-material = SubResource("ShaderMaterial_maf8m")
-position = Vector2(-832, 128)
-scale = Vector2(18, 4)
-texture = ExtResource("5_6ev3c")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PinkArea"]
 position = Vector2(-768, 288)
 shape = SubResource("RectangleShape2D_jv6wh")
 debug_color = Color(0.843059, 0.00106504, 0.91619, 0.42)
+
+[node name="PinkIcon" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_maf8m")
+position = Vector2(-408, 32)
+scale = Vector2(4.875, 4)
+texture = ExtResource("5_6ev3c")
 
 [node name="GreenArea" type="Area2D" parent="." node_paths=PackedStringArray("scene_manager")]
 script = ExtResource("3_jv6wh")
 preferred_color = 1
 scene_manager = NodePath("..")
 
-[node name="Icon" type="Sprite2D" parent="GreenArea"]
-material = SubResource("ShaderMaterial_huasi")
-position = Vector2(832, 128)
-scale = Vector2(18, 4)
-texture = ExtResource("5_6ev3c")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreenArea"]
 position = Vector2(768, 288)
 shape = SubResource("RectangleShape2D_jv6wh")
 debug_color = Color(0, 0.639226, 0.367686, 0.42)
+
+[node name="GreenIcon" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_huasi")
+position = Vector2(408, 32)
+scale = Vector2(4.75, 4)
+texture = ExtResource("5_6ev3c")
 
 [node name="BadArea" type="Area2D" parent="." node_paths=PackedStringArray("scene_manager")]
 script = ExtResource("3_jv6wh")
@@ -193,6 +203,7 @@ shape = SubResource("RectangleShape2D_jv6wh")
 debug_color = Color(0.956863, 0, 0, 0.419608)
 
 [node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.695503, 0.695503, 0.695503, 1)
 z_index = -300
 z_as_relative = false
 material = SubResource("ShaderMaterial_drdnd")
@@ -201,10 +212,18 @@ offset_top = -640.0
 offset_right = 114.0
 offset_bottom = 384.0
 scale = Vector2(2, 2)
-texture = ExtResource("9_76v2p")
+texture = ExtResource("9_7ewk0")
 stretch_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="RobotUI" type="AnimatedSprite2D" parent="UILayer"]
+position = Vector2(44, 48)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_gnsmo")
+frame = 5
+frame_progress = 1.0
 
 [node name="BGLayer" type="CanvasLayer" parent="UILayer"]
 
@@ -213,9 +232,29 @@ unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -608.0
+offset_left = -504.0
+offset_top = 16.0
+offset_right = -346.0
+offset_bottom = -505.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.13439
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_huasi")
+metadata/_edit_lock_ = true
+
+[node name="Indicator2" type="ColorRect" parent="UILayer/BGLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 689.0
+offset_top = -539.0
+offset_right = 847.0
+offset_bottom = -1039.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.748746
 color = Color(0, 0, 0, 1)
 script = ExtResource("8_huasi")
 
@@ -233,20 +272,24 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = 504.0
+offset_right = 544.0
+offset_bottom = 91.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
-horizontal_alignment = 1
+label_settings = ExtResource("12_psl12")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="LivesLabel" type="Label" parent="UILayer/UIRoot"]
 layout_mode = 1
-offset_right = 51.0
-offset_bottom = 23.0
+offset_left = 92.0
+offset_right = 143.0
+offset_bottom = 91.0
 theme_override_font_sizes/font_size = 32
-text = "Vidas: 3"
+text = "3"
+label_settings = ExtResource("12_gnsmo")
 
 [node name="GameOverOverlay" type="ColorRect" parent="UILayer/UIRoot"]
 visible = false
@@ -273,6 +316,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Fim de Jogo!"
+label_settings = ExtResource("12_gnsmo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -291,24 +335,52 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 text = "Pontos: 0"
+label_settings = ExtResource("12_gnsmo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TryAgainButton" type="Button" parent="UILayer/UIRoot/GameOverOverlay"]
+[node name="GameOverScoreLabel" type="Label" parent="UILayer/UIRoot/GameOverOverlay/GameOverScoreLabel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = 44.0
-offset_right = 76.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Tentar novamente"
+offset_left = -109.0
+offset_top = 84.0
+offset_right = 779.0
+offset_bottom = 175.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 36
+text = "Pressione Espaço para tentar novamente!"
+label_settings = ExtResource("12_gnsmo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainers" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="BoxContainers3" type="Sprite2D" parent="BoxContainers"]
+z_index = -1
+position = Vector2(408, 168)
+scale = Vector2(7, 7)
+texture = ExtResource("11_7ewk0")
+metadata/_edit_lock_ = true
+
+[node name="BoxContainers4" type="Sprite2D" parent="BoxContainers"]
+position = Vector2(408, 168)
+scale = Vector2(7, 7)
+texture = ExtResource("12_lhp3t")
+metadata/_edit_lock_ = true
+
+[node name="BoxContainers1" type="Sprite2D" parent="BoxContainers"]
+z_index = -1
+position = Vector2(-408, 168)
+scale = Vector2(7, 7)
+texture = ExtResource("11_76v2p")
+metadata/_edit_lock_ = true
+
+[node name="BoxContainers2" type="Sprite2D" parent="BoxContainers"]
+position = Vector2(-408, 168)
+scale = Vector2(7, 7)
+texture = ExtResource("12_drdnd")
+metadata/_edit_lock_ = true
 
 [connection signal="died" from="." to="Spawner" method="_on_main_scene_died"]
 [connection signal="game_over" from="Spawner" to="." method="_on_spawner_game_over"]
-[connection signal="pressed" from="UILayer/UIRoot/GameOverOverlay/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="frame_changed" from="UILayer/RobotUI" to="." method="_on_robot_ui_frame_changed"]

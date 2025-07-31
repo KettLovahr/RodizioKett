@@ -1,7 +1,6 @@
 extends Area2D
 class_name SeeSaw
 
-
 var left_rot = -PI/6
 var right_rot = PI/6
 
@@ -55,15 +54,18 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_can_shoot_timer_timeout() -> void:
 	self.can_shoot = true
 
-
 func _on_robot_animation_finished() -> void:
 	robot.play("default")
 
-
 func _on_robot_frame_changed() -> void:
 	if robot.animation == "shoot":
-		if robot.frame == 4:
+		if robot.frame == 3:
 			Shoot()
+
+func _on_see_saw_sprites_animation_finished() -> void:
+	if see_saw_sprites.animation == "left" or "right":
+		if see_saw_sprites.frame > 1:
+			see_saw_sprites.frame = 2
 
 func Shoot():
 	$RayCast2D/Beam.scale = Vector2(1.0, 15)
